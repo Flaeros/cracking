@@ -8,7 +8,6 @@ import java.util.Map;
  */
 public class IsUnique_1_1 {
 
-
     public static void main(String[] args) {
         //System.out.println(Arrays.toString(new IsUnique_1_1().createTargetArray(new int[]{0,1,2,3,4}, new int[] {0,1,2,2,1})));
         System.out.println(new IsUnique_1_1().isUnique("abcdb"));
@@ -28,13 +27,17 @@ public class IsUnique_1_1 {
 
     public boolean isUniqueInPlace(String s) {
         //imagine in-place sort
-        String sorted = s.chars().sorted().collect(StringBuilder::new,
-                StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
+        String sorted = getSorted(s);
         for (int i = 0; i < sorted.length() - 1; i++) {
             if (sorted.charAt(i) == sorted.charAt(i + 1))
                 return false;
         }
         return true;
+    }
+
+    private String getSorted(String s) {
+        return s.chars().sorted().collect(StringBuilder::new,
+                StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
     }
 }
