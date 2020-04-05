@@ -5,23 +5,37 @@ package arrays_strings;
  */
 public class PalindromePermutation_1_4 {
     public static void main(String[] args) {
+
         System.out.println(new PalindromePermutation_1_4().palindromePermutationBitwise("tactcoa"));
+        System.out.println(new PalindromePermutation_1_4().palindromePermutationBitwise("tact coa"));
+        System.out.println(new PalindromePermutation_1_4().palindromePermutationBitwise("tactca"));
+
         System.out.println(new PalindromePermutation_1_4().palindromePermutationCharTable("tactcoa"));
         System.out.println(new PalindromePermutation_1_4().palindromePermutationCharTable("tact coa"));
+        System.out.println(new PalindromePermutation_1_4().palindromePermutationCharTable("tactca"));
 
     }
 
     /**
-     * XOR all chars
+     * hashtable as bit vector
      * O(N)
      */
     public boolean palindromePermutationBitwise(String one) {
-        int result = 0;
+        int table = 0;
+
         for (int i = 0; i < one.length(); i++) {
-            result ^= one.charAt(i);
+            int numericValue = Character.getNumericValue(one.charAt(i));
+
+            int mask = 1 << numericValue;
+
+            if ((table & mask) == 0) {
+                table |= mask;
+            } else {
+                table &= ~mask;
+            }
         }
 
-        return result == 0;
+        return table == 0 || (((table - 1) & table) == 0);
     }
 
     public boolean palindromePermutationCharTable(String one) {
@@ -35,6 +49,9 @@ public class PalindromePermutation_1_4 {
             if (count[i] % 2 != 0)
                 odds++;
         }
-        return odds % 2 != 0;
+        if (one.length() % 2 == 0)
+            return odds == 0;
+
+        return odds == 1;
     }
 }
