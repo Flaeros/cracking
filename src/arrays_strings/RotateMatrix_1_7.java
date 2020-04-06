@@ -25,7 +25,7 @@ public class RotateMatrix_1_7 {
 
     }
 
-    private static String printDim(int[][] rotateMatrix) {
+    public static String printDim(int[][] rotateMatrix) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < rotateMatrix.length; i++) {
             builder.append(Arrays.toString(rotateMatrix[i]));
