@@ -2,7 +2,7 @@ package arrays_strings;
 
 import java.util.Arrays;
 
-public class RotateMatrix {
+public class RotateMatrix_1_7 {
     public static void main(String[] args) {
 
         int[][] mx = {
@@ -11,7 +11,7 @@ public class RotateMatrix {
                 {8, 9, 10, 11},
                 {12, 13, 14, 15}};
         System.out.println(printDim(mx));
-        System.out.println(printDim(new RotateMatrix().rotateMatrix(mx)));
+        System.out.println(printDim(new RotateMatrix_1_7().rotateMatrix(mx)));
 
 
         mx = new int[][]{
@@ -21,7 +21,7 @@ public class RotateMatrix {
                 {15, 16, 17, 18, 19},
                 {20, 21, 22, 23, 24}};
         System.out.println(printDim(mx));
-        System.out.println(printDim(new RotateMatrix().rotateMatrix(mx)));
+        System.out.println(printDim(new RotateMatrix_1_7().rotateMatrix(mx)));
 
     }
 
@@ -40,7 +40,6 @@ public class RotateMatrix {
         int temp;
 
         for (int innerCircleIdx = 0; innerCircleIdx < N / 2; innerCircleIdx++) {
-
 
             int lastCircleReplaceIdx = N - innerCircleIdx - 1;
 
