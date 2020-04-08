@@ -26,7 +26,7 @@ public class LinkedNode {
     public static String printNodes(LinkedNode root) {
         LinkedNode node = root;
         StringBuilder builder = new StringBuilder();
-        while (node.next != null) {
+        while (node != null) {
             builder.append(node.val);
             builder.append(" ");
             node = node.next;
