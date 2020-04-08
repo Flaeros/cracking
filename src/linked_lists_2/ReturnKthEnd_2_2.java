@@ -7,9 +7,26 @@ import static java.util.Arrays.asList;
 public class ReturnKthEnd_2_2 {
     public static void main(String[] args) {
         LinkedNode nodes = LinkedNode.nodes(asList(3, 7, 1, 4, 2, 5, 3, 4, 3, 0, 1, 4, 5, 1, 2));
-        System.out.println(new ReturnKthEnd_2_2().returnKthFromEnd(nodes, 3).val);
-        System.out.println(new ReturnKthEnd_2_2().returnKthFromEnd(nodes, 15).val);
-        System.out.println(new ReturnKthEnd_2_2().returnKthFromEnd(nodes, 1).val);
+        System.out.println(new ReturnKthEnd_2_2().returnKthFrom2P(nodes, 3).val);
+        System.out.println(new ReturnKthEnd_2_2().returnKthFrom2P(nodes, 15).val);
+        System.out.println(new ReturnKthEnd_2_2().returnKthFrom2P(nodes, 1).val);
+    }
+
+    public LinkedNode returnKthFrom2P(LinkedNode root, int k) {
+        LinkedNode first = root;
+        LinkedNode second = root;
+
+        for (int i = 0; i < k; i++) {
+            if (second == null)
+                return null;
+            second = second.next;
+        }
+
+        while (second != null) {
+            second = second.next;
+            first = first.next;
+        }
+        return first;
     }
 
     public LinkedNode returnKthFromEnd(LinkedNode root, int k) {
