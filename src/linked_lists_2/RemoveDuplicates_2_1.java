@@ -18,27 +18,22 @@ public class RemoveDuplicates_2_1 {
         LinkedNode nodes = LinkedNode.nodes(asList(3, 7, 1, 4, 2, 5, 3, 4, 3, 0, 1, 4, 5, 1, 2));
         System.out.println(printNodes(nodes));
         System.out.println(printNodes(new RemoveDuplicates_2_1().removeDupsN2(nodes)));
+        System.out.println(printNodes(new RemoveDuplicates_2_1().removeDupsN(nodes)));
     }
 
     public LinkedNode removeDupsN2(LinkedNode root) {
         LinkedNode first = root;
-        LinkedNode second = first.next;
-        LinkedNode parent = first;
+        while (first != null) {
+            LinkedNode second = first;
+            while (second.next != null) {
+                if (second.next.val == first.val) {
+                    second.next = second.next.next;
+                } else {
+                    second = second.next;
+                }
 
-        while (first.next != null) {
-            if (second.val == first.val) {
-                parent.next = second.next;
-                second = second.next;
-            } else {
-                parent = second;
-                second = second.next;
-            }
-
-            if (second == null) {
-                first = first.next;
-                second = first.next;
-                parent = first;
-            }
+                }
+            first = first.next;
         }
 
         return root;
@@ -49,15 +44,14 @@ public class RemoveDuplicates_2_1 {
         LinkedNode node = root;
         LinkedNode parent = null;
 
-        while (node.next != null) {
+        while (node != null) {
             if (existing.contains(node.val)) {
                 parent.next = node.next;
-                node = node.next;
             } else {
                 existing.add(node.val);
                 parent = node;
-                node = node.next;
             }
+            node = node.next;
         }
         return root;
     }
