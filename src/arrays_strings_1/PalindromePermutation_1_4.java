@@ -1,4 +1,4 @@
-package arrays_strings;
+package arrays_strings_1;
 
 /**
  * Check if given string is a permutation of palindrome

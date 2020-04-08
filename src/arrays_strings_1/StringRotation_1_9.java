@@ -1,4 +1,4 @@
-package arrays_strings;
+package arrays_strings_1;
 
 public class StringRotation_1_9 {
     public static void main(String[] args) {

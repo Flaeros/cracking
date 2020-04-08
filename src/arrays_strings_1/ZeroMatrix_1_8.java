@@ -1,6 +1,6 @@
-package arrays_strings;
+package arrays_strings_1;
 
-import static arrays_strings.RotateMatrix_1_7.printDim;
+import static arrays_strings_1.RotateMatrix_1_7.printDim;
 
 public class ZeroMatrix_1_8 {
 

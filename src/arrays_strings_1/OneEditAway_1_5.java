@@ -1,4 +1,4 @@
-package arrays_strings;
+package arrays_strings_1;
 
 /**
  * Check the string are one edit away
