@@ -11,6 +11,27 @@ public class Partition_2_4 {
     }
 
     private LinkedNode partition(LinkedNode node, int p) {
+        LinkedNode head = node;
+        LinkedNode tail = node;
+
+        while (node != null) {
+            LinkedNode next = node.next;
+            if (node.val < p) {
+                node.next = head;
+                head = node;
+            } else {
+                tail.next = node;
+                tail = node;
+            }
+            node = next;
+        }
+
+        tail.next = null;
+
+        return head;
+    }
+
+    private LinkedNode partition2Nodes(LinkedNode node, int p) {
         LinkedNode lowRoot = null;
         LinkedNode lower = null;
         LinkedNode highRoot = null;
