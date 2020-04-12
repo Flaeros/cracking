@@ -1,3 +1,5 @@
+package queues_stacks_3;
+
 import java.util.Arrays;
 
 public class ThreeStacks_3_1 {
