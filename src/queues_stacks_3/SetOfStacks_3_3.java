@@ -1,5 +1,9 @@
 package queues_stacks_3;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 public class SetOfStacks_3_3 {
 
     public static void main(String[] args) {
@@ -23,79 +27,57 @@ public class SetOfStacks_3_3 {
     }
 
 
-    static int initialCapacity = 1;
     static int maxCapacity = 2;
 
-    int size = 0;
-    int currentSize = 0;
-    int currentArray = 0;
-    int currentIndex = 0;
+    int currentStack = 0;
 
-    int[][] array = new int[initialCapacity][maxCapacity];
+    List<Stack<Integer>> stacks = new ArrayList<>();
+
+    public SetOfStacks_3_3() {
+        stacks.add(new Stack<>());
+    }
 
     void push(int val) {
-        if (currentSize == maxCapacity)
-            extend();
-        if (currentSize > 0)
-            currentIndex++;
-        array[currentArray][currentIndex] = val;
+        if (stacks.size() < currentStack) {
+            currentStack++;
+            stacks.add(new Stack<>());
+        }
 
-        currentSize++;
-        size++;
+        Stack<Integer> stack = stacks.get(currentStack);
+        if (stack.size() == maxCapacity) {
+            stack = new Stack<>();
+            currentStack++;
+            stacks.add(stack);
+        }
+        stack.push(val);
     }
 
     int pop() {
-        if (isEmpty())
+        if (stacks.isEmpty())
             return 0;
-
-        int val = array[currentArray][currentIndex];
-        array[currentArray][currentIndex] = 0;
-        currentSize--;
-        size--;
-
-        shift();
-
-        if (currentIndex > 0)
-            currentIndex--;
-
-        return val;
+        Stack<Integer> stack = stacks.get(currentStack);
+        if (stack.isEmpty()) {
+            if (currentStack == 0)
+                return 0;
+            stack = stacks.get(--currentStack);
+        }
+        return stack.pop();
     }
 
     int peek() {
-        return array[currentArray][currentIndex];
+        if (stacks.isEmpty())
+            return 0;
+        Stack<Integer> stack = stacks.get(currentStack);
+
+        if (stack.isEmpty()) {
+            if (currentStack == 0)
+                return 0;
+            stack = stacks.get(--currentStack);
+        }
+        return stack.peek();
     }
 
     boolean isEmpty() {
-        return size == 0;
-    }
-
-    private void shift() {
-        if (currentArray == 0)
-            return;
-
-        if (currentIndex == 0 && currentSize == 0) {
-            currentArray--;
-            currentIndex = maxCapacity - 1;
-            currentSize = maxCapacity;
-        }
-    }
-
-    private void extend() {
-        if (currentArray == array.length - 1) {
-            int[][] newArray = new int[array.length + 2][maxCapacity];
-            for (int i = 0; i < array.length; i++) {
-                for (int j = 0; j < maxCapacity; j++) {
-                    newArray[i][j] = array[i][j];
-                }
-            }
-            array = newArray;
-            currentArray++;
-            currentIndex = 0;
-            currentSize = 0;
-        } else {
-            currentArray++;
-            currentIndex = 0;
-            currentSize = 0;
-        }
+        return stacks.isEmpty() || stacks.get(0).isEmpty();
     }
 }
