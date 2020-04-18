@@ -1,7 +1,5 @@
 package trees_graphs_4;
 
-import java.util.Arrays;
-
 import static java.util.Arrays.asList;
 
 public class CheckBinaryTreeBalanced_4_4 {
