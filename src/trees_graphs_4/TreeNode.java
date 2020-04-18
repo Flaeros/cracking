@@ -30,4 +30,9 @@ public class TreeNode {
 
         return node;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(val);
+    }
 }
