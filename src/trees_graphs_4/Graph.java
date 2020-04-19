@@ -23,7 +23,7 @@ public class Graph {
                     children.add(nodes[j]);
                 }
             }
-            node.children = children.toArray(new Node[0]);
+            node.children = children;
         }
 
         Graph g = new Graph();
