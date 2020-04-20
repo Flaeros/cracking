@@ -49,20 +49,4 @@ public class FIndSuccessor_4_6 {
         root.right = add(array, peek + 1, high, root);
         return root;
     }
-
-    static class TreeNodeP {
-        TreeNodeP parent;
-        int val;
-        public TreeNodeP left;
-        public TreeNodeP right;
-
-        TreeNodeP(int x) {
-            this.val = x;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(val);
-        }
-    }
 }
