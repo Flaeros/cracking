@@ -11,6 +11,10 @@ public class TreeNode {
         val = x;
     }
 
+    public static TreeNode tree(List<Integer> tree) {
+        return tree(tree, 0);
+    }
+
     public static TreeNode tree(List<Integer> tree, int i) {
         if (tree.isEmpty())
             return null;
