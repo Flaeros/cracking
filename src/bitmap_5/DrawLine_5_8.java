@@ -2,7 +2,7 @@ package bitmap_5;
 
 public class DrawLine_5_8 {
     public static void main(String[] args) {
-        System.out.println(printDim(new DrawLine_5_8().drawLine(new byte[]{0, 0, 0, 0}, 16, 3, 12, 1), 2));
+        new DrawLine_5_8().drawLine(new byte[]{0, 0, 0, 0}, 16, 3, 12, 1);
     }
 
     byte[] drawLine(byte[] screen, int width, int x1, int x2, int y) {
@@ -43,15 +43,5 @@ public class DrawLine_5_8 {
         }
 
         return screen;
-    }
-
-    public static String printDim(byte[] rotateMatrix, int width) {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < rotateMatrix.length; i++) {
-            builder.append(rotateMatrix[i]);
-            if (i % width == 0)
-                builder.append("\n");
-        }
-        return builder.toString();
     }
 }
