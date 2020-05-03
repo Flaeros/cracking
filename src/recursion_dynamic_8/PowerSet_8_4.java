@@ -11,10 +11,37 @@ public class PowerSet_8_4 {
         List<List<Integer>> res = new PowerSet_8_4().powerSet(List.of(1, 2, 3, 4, 5));
         res.sort(Comparator.comparingInt(List::size));
         System.out.println(res);
+
+        res = new PowerSet_8_4().powerSetBinary(List.of(1, 2, 3, 4, 5));
+        res.sort(Comparator.comparingInt(List::size));
+        System.out.println(res);
+    }
+
+    public List<List<Integer>> powerSetBinary(List<Integer> set) {
+        int max = 1 << set.size();
+
+        List<List<Integer>> allSubSets = new ArrayList<>();
+        for (int i = 0; i < max; i++) {
+            List<Integer> subset = generateSubSet(set, i);
+            allSubSets.add(subset);
+        }
+        return allSubSets;
+    }
+
+    private List<Integer> generateSubSet(List<Integer> set, int mask) {
+        List<Integer> subset = new ArrayList<>();
+        int index = 0;
+        for (int i = mask; i > 0; i >>= 1) {
+            if ((i & 1) == 1) {
+                subset.add(set.get(index));
+            }
+            index++;
+        }
+        return subset;
     }
 
     public List<List<Integer>> powerSet(List<Integer> set) {
-        return powerSet( set, 0);
+        return powerSet(set, 0);
     }
 
     private List<List<Integer>> powerSet(List<Integer> set, int index) {
