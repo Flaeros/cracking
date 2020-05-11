@@ -2,9 +2,9 @@ package sorting_searching_10;
 
 import java.util.Random;
 
-public class MissingInt_10_6 {
+public class MissingInt_10_7 {
     public static void main(String[] args) {
-        System.out.println(new MissingInt_10_6().missingInt(new File()));
+        System.out.println(new MissingInt_10_7().missingInt(new File()));
     }
 
     int missingInt(File file) {
