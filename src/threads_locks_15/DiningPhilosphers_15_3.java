@@ -10,19 +10,21 @@ public class DiningPhilosphers_15_3 {
     public static void main(String[] args) {
         List<Philosopher> philosophers = new ArrayList<>();
 
-        ChopStick prev = null;
-        ChopStick next = new ChopStick("0");
-        Philosopher first = new Philosopher("0", prev, next);
-        philosophers.add(first);
-        prev = next;
+        ChopStick first = new ChopStick(0);
+        ChopStick prev = first;
+        ChopStick next;
 
-        for (int i = 0; i < 2; i++) {
-            next = new ChopStick(String.valueOf(i + 1));
-            Philosopher philosopher = new Philosopher("" + i, prev, next);
+        int count = 2;
+        for (int i = 0; i < count; i++) {
+            next = new ChopStick(i + 1);
+            Philosopher philosopher = new Philosopher(i, prev, next);
             philosophers.add(philosopher);
             prev = next;
         }
-        first.left=prev;
+
+        Philosopher last = new Philosopher(count, prev, first);
+        philosophers.add(last);
+
 
         for (Philosopher philosopher : philosophers) {
             philosopher.start();
@@ -31,9 +33,9 @@ public class DiningPhilosphers_15_3 {
 
     static class ChopStick {
         private Lock lock;
-        private String name;
+        private int name;
 
-        public ChopStick(String name) {
+        public ChopStick(int name) {
             this.name = name;
             lock = new ReentrantLock();
         }
@@ -52,16 +54,22 @@ public class DiningPhilosphers_15_3 {
         private int bites = 10;
 
         private ChopStick left, right;
-        private String name;
+        private int index;
 
-        public Philosopher(String name, ChopStick left, ChopStick right) {
-            this.name = name;
-            this.left = left;
-            this.right = right;
+        public Philosopher(int index, ChopStick left, ChopStick right) {
+            this.index = index;
+
+            if (left.name < right.name) {
+                this.left = left;
+                this.right = right;
+            } else {
+                this.left = right;
+                this.right = left;
+            }
         }
 
         public void eat() {
-            System.out.println("eat " + name);
+            System.out.println("eat " + index);
             pickUp();
             chew();
             putDown();
